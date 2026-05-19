@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SunGrief — Магазин</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#05070d;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#ff7a00;
+    border-radius:20px;
+}
+
+/* CONTAINER */
+
+.container{
+    width:92%;
+    max-width:1450px;
+    margin:auto;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:28px 0;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.logo img{
+    width:68px;
+    height:68px;
+    object-fit:cover;
+    border-radius:18px;
+    border:2px solid #ff7a00;
+    box-shadow:0 0 20px rgba(255,122,0,.4);
+}
+
+.logo h1{
+    font-size:30px;
+    font-weight:800;
+}
+
+nav{
+    display:flex;
+    gap:35px;
+}
+
+nav a{
+    color:#aeb3bf;
+    text-decoration:none;
+    font-weight:600;
+    transition:.2s;
+}
+
+nav a:hover,
+nav .active{
+    color:#ff7a00;
+}
+
+/* HERO */
+
+.hero{
+    height:470px;
+    border-radius:34px;
+    overflow:hidden;
+    position:relative;
+    margin-bottom:35px;
+    display:flex;
+    align-items:center;
+    padding:70px;
+    background:
+    linear-gradient(to right,
+    rgba(0,0,0,.88),
+    rgba(0,0,0,.35)),
+    url("photo_2026-02-12_18-04-02.jpg") center/cover no-repeat;
+}
+
+.hero-content{
+    max-width:620px;
+}
+
+.hero h2{
+    font-size:72px;
+    font-weight:800;
+    margin-bottom:18px;
+    line-height:1;
+}
+
+.hero p{
+    font-size:24px;
+    color:#d7d9df;
+    line-height:1.5;
+}
+
+.hero-btns{
+    display:flex;
+    gap:16px;
+    margin-top:35px;
+}
+
+.hero button{
+    padding:16px 34px;
+    border:none;
+    border-radius:18px;
+    background:#ff7a00;
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.hero button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 25px rgba(255,122,0,.35);
+}
+
+.secondary-btn{
+    background:#141923 !important;
+}
+
+/* INFO */
+
+.info{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:22px;
+    margin-bottom:45px;
+}
+
+.card{
+    background:#0d1119;
+    border-radius:28px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,.05);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card-title{
+    color:#9ea4b2;
+    font-size:15px;
+    margin-bottom:15px;
+}
+
+.big-text{
+    font-size:36px;
+    font-weight:800;
+    margin-bottom:16px;
+}
+
+.online{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    color:#ff7a00;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ff2e2e;
+    box-shadow:0 0 12px #ff2e2e;
+}
+
+.play-btn{
+    margin-top:18px;
+    padding:14px 24px;
+    border:none;
+    border-radius:16px;
+    background:#ff7a00;
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.play-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* TITLES */
+
+.section-title{
+    margin-bottom:18px;
+    font-size:22px;
+    font-weight:700;
+    color:#d4d7df;
+}
+
+/* SELECT */
+
+.select{
+    width:340px;
+    background:#0d1119;
+    padding:18px 22px;
+    border-radius:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:45px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.select:hover{
+    background:#131925;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:22px;
+    margin-bottom:65px;
+}
+
+.category{
+    position:relative;
+    height:210px;
+    border-radius:28px;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding:28px;
+    transition:.25s;
+    background-size:145px;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+.category:hover{
+    transform:translateY(-6px);
+}
+
+.category::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,
+    rgba(0,0,0,.72),
+    transparent);
+}
+
+.category span{
+    position:relative;
+    z-index:2;
+    font-size:34px;
+    font-weight:800;
+}
+
+.priv{
+    background-color:#a34d00;
+    background-image:url("");
+}
+
+.cases{
+    background-color:#3b2a1d;
+    background-image:url("");
+}
+
+.coins{
+    background-color:#0048c0;
+    background-image:url("");
+}
+
+.other{
+    background-color:#56321b;
+    background-image:url("");
+}
+
+/* PRODUCTS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+    gap:24px;
+    margin-bottom:80px;
+}
+
+.product{
+    background:#0d1119;
+    border-radius:28px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.05);
+    transition:.25s;
+}
+
+.product:hover{
+    transform:translateY(-5px);
+}
+
+.product-top{
+    height:190px;
+    background:
+    linear-gradient(to top, rgba(0,0,0,.55), transparent),
+    url("photo_2026-02-12_18-04-02.jpg") center/cover;
+}
+
+.product-body{
+    padding:26px;
+}
+
+.product h3{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.price{
+    color:#ff7a00;
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.product ul{
+    list-style:none;
+    margin-bottom:22px;
+}
+
+.product li{
+    margin-bottom:10px;
+    color:#c3c7d1;
+}
+
+.buy-btn{
+    width:100%;
+    border:none;
+    padding:16px;
+    border-radius:16px;
+    background:#ff7a00;
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.buy-btn:hover{
+    opacity:.92;
+}
+
+/* FOOTER */
+
+footer{
+    padding:40px 0;
+    border-top:1px solid rgba(255,255,255,.06);
+    text-align:center;
+    color:#8d92a0;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    header{
+        flex-direction:column;
+        gap:22px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero{
+        height:auto;
+        padding:45px 30px;
+    }
+
+    .hero h2{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    .hero-btns{
+        flex-direction:column;
+    }
+
+    .categories{
+        grid-template-columns:1fr;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+
+<div class="logo">
+<img src="photo_2026-02-12_18-04-02.jpg">
+<h1>SunGrief — Магазин</h1>
+</div>
+
+<nav>
+<a href="#" class="active">Главная</a>
+<a href="#">Поддержка</a>
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h2>SunGrief</h2>
+
+<p>
+Лучший Minecraft сервер для настоящего грифа.  
+Покупай привилегии, кейсы и монеты прямо сейчас.
+</p>
+
+<div class="hero-btns">
+
+<button>Начать играть</button>
+
+<a href="https://discord.gg/VMmjwKWpkZ" target="_blank">
+<button class="secondary-btn">Наш Discord</button>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- INFO -->
+
+<section class="info">
+
+<div class="card">
+
+<div class="card-title">Статус сервера</div>
+
+<div class="big-text">Оффлайн</div>
+
+<div class="online">
+<div class="dot"></div>
+Сервер временно выключен
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">IP сервера</div>
+
+<div class="big-text">play.sungrief.ru</div>
+
+<button class="play-btn">Скопировать IP</button>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">Онлайн игроков</div>
+
+<div class="big-text">0 игроков</div>
+
+<div class="online">
+<div class="dot"></div>
+Ожидаем запуск
+</div>
+
+</div>
+
+</section>
+
+<!-- SELECT -->
+
+<div class="section-title">Режим сервера</div>
+
+<div class="select">
+<span>Гриферский</span>
+<span>▼</span>
+</div>
+
+<!-- CATEGORIES -->
+
+<div class="section-title">Категории</div>
+
+<section class="categories">
+
+<div class="category priv">
+<span>Привилегии</span>
+</div>
+
+<div class="category cases">
+<span>Кейсы</span>
+</div>
+
+<div class="category coins">
+<span>Монеты</span>
+</div>
+
+<div class="category other">
+<span>Другое</span>
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<div class="section-title">Популярные товары</div>
+
+<section class="products">
+
+<div class="product">
+
+<div class="product-top"></div>
+
+<div class="product-body">
+
+<h3>VIP</h3>
+
+<div class="price">149 ₽</div>
+
+<ul>
+<li>✔ Цветной чат</li>
+<li>✔ Кит VIP</li>
+<li>✔ Красивый префикс</li>
+</ul>
+
+<button class="buy-btn">Купить</button>
+
+</div>
+
+</div>
+
+<div class="product">
+
+<div class="product-top"></div>
+
+<div class="product-body">
+
+<h3>PREMIUM</h3>
+
+<div class="price">349 ₽</div>
+
+<ul>
+<li>✔ Полёт</li>
+<li>✔ Команда /feed</li>
+<li>✔ Дополнительные возможности</li>
+</ul>
+
+<button class="buy-btn">Купить</button>
+
+</div>
+
+</div>
+
+<div class="product">
+
+<div class="product-top"></div>
+
+<div class="product-body">
+
+<h3>DELUXE</h3>
+
+<div class="price">799 ₽</div>
+
+<ul>
+<li>✔ Все команды</li>
+<li>✔ Уникальный набор</li>
+<li>✔ Донат меню</li>
+</ul>
+
+<button class="buy-btn">Купить</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 SunGrief — Все права защищены.
+</footer>
+
+</div>
+
+<script>
+
+const copyBtn = document.querySelector(".play-btn");
+
+copyBtn.addEventListener("click", async () => {
+
+    try {
+
+        await navigator.clipboard.writeText("play.sungrief.ru");
+
+        copyBtn.innerText = "IP Скопирован!";
+        copyBtn.style.background = "#22c55e";
+
+        setTimeout(() => {
+
+            copyBtn.innerText = "Скопировать IP";
+            copyBtn.style.background = "#ff7a00";
+
+        }, 2000);
+
+    } catch(err) {
+
+        alert("Не удалось скопировать IP");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
